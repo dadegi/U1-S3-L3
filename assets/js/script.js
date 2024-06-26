@@ -45,6 +45,8 @@ window.addEventListener('load', init());
 function init() {
 	formThanks.style.display = 'none';
 	btnSubmit.setAttribute('disabled', 'true'); // Disabilito il button submit finché il form non è compilato correttamente
+    let myName = prompt('Scrivi il tuo nome');
+    document.getElementById('welcome').innerText = `Benvenuto ${myName}`;
 }
 
 // EVENTI
@@ -123,7 +125,9 @@ function verify() {
 btnSubmit.addEventListener('click', function (e) {
 	e.preventDefault();
 	compileObject();
-	printData();
+    setTimeout(() => {
+        printData();
+    }, 3000);
 	myForm.reset();
 });
 
@@ -173,6 +177,8 @@ const ulList = document.getElementById('list');
 const listItems = [];
 
 btnInsert.addEventListener('click', function (e) {
+    let myConfirm = confirm('Sei sicuro?')
+    if (!myConfirm) return;
 	e.preventDefault();
 	if (!checkInput()) return;
 	popolateArray();
